@@ -18,7 +18,7 @@ class NoteTest {
     }
 
     @Test
-    void getMidiNote() {
+    void getMidiNote() throws NoteNameFormatException {
         Assertions.assertEquals(60,note.getMidiNote());
         note.setNoteName("A");
         Assertions.assertEquals(45,note.getMidiNote());
@@ -28,9 +28,7 @@ class NoteTest {
 
     @Test()
     void setNoteName_withWrongValue() {
-        Exception exception = assertThrows(NoteNameFormatException.class, () -> {
-            note.setNoteName("C$");
-        });
+        Exception exception = assertThrows(NoteNameFormatException.class, () -> note.setNoteName("C$"));
         String expectedMessage = "Wrong note name format exception!";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));

@@ -1,5 +1,7 @@
 package com.riobener;
 
+import com.riobener.exceptions.NoteNameFormatException;
+
 public class Note {
     private int octave;
     private String noteName;
@@ -25,7 +27,14 @@ public class Note {
         this.octave = octave;
     }
 
-    public void setNoteName(String noteName) {
-
+    public void setNoteName(String noteName) throws NoteNameFormatException {
+        for(String note: notes){
+            if (noteName.equals(note)) {
+                this.noteName = noteName;
+                break;
+            }else{
+                throw new NoteNameFormatException("Wrong note name format exception!");
+            }
+        }
     }
 }
