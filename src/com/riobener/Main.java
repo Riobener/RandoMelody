@@ -5,14 +5,9 @@ import javax.sound.midi.*;
 public class Main {
 
     public static void main(String[] args) throws MidiUnavailableException {
-        int noteNumber = 60;
-        noteNumber -= 21; // see the explanation below.
-        String[] notes = new String[] {"A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"};
-        int octave = noteNumber / 12 + 1;
-        String name = notes[noteNumber % 12];
-        System.out.println(name + octave);
+
     }
-    public static void play(int instrument, int note) {
+    /*public static void play(int instrument, int note) {
         try {
             Sequencer player = MidiSystem.getSequencer();
             player.setTempoInBPM(34);
@@ -41,5 +36,5 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }

@@ -14,14 +14,14 @@ class NoteTest {
     Note note;
     @BeforeEach
     void setUp() {
-        note = new Note(3,"C");
+        note = new Note(5,"C");
     }
 
     @Test
     void getMidiNote() throws NoteNameFormatException {
         Assertions.assertEquals(60,note.getMidiNote());
         note.setNoteName("A");
-        Assertions.assertEquals(45,note.getMidiNote());
+        Assertions.assertEquals(69,note.getMidiNote());
         note.setOctave(4);
         Assertions.assertEquals(57,note.getMidiNote());
     }
