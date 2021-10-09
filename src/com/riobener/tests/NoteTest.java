@@ -14,7 +14,7 @@ class NoteTest {
     Note note;
     @BeforeEach
     void setUp() {
-        note = new Note(5,"C");
+        note = new Note(5,"C",1000);
     }
 
     @Test

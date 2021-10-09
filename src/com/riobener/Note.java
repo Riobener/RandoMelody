@@ -5,22 +5,15 @@ import com.riobener.exceptions.NoteNameFormatException;
 public class Note {
     private int octave;
     private String noteName;
+    private int duration;
     String[] notes = new String[] {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" };
-    public Note(int octave, String noteName) {
+    public Note(int octave, String noteName, int duration) {
         this.octave = octave;
         this.noteName = noteName;
+        this.duration = duration;
     }
 
     public int getMidiNote(){
-        /*
-        int noteIndex = 0;
-        for(int i = 0; i<notes.length;i++){
-            if(noteName.equals(notes[i])){
-                noteIndex = i;
-                break;
-            }
-        }
-        noteNumber = (octave-1)/12*(noteIndex+1);*/
         int noteIndex = 0;
         for(int i = 0; i<notes.length;i++){
             if(noteName.equals(notes[i])){
@@ -60,5 +53,13 @@ public class Note {
         }
         if(!isSuccessful)
         throw new NoteNameFormatException("Wrong note name format exception!");
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }
