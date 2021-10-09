@@ -23,7 +23,7 @@ class MajorChordTest {
     @Test
     void getChordFromNote() {
         Assertions.assertEquals(chordC, new MajorChord().getFrom(keyC));
-        Assertions.assertEquals(chordC, new MajorChord().getFrom(keyF));
+        Assertions.assertEquals(chordF, new MajorChord().getFrom(keyF));
     }
 
 }
