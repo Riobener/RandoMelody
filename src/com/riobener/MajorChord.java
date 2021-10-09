@@ -1,17 +1,18 @@
 package com.riobener;
 
 public class MajorChord {
-    private Note note;
 
-    public MajorChord(Note note) {
-        this.note = note;
+    private int[] chord = new int[3];
+
+    public int[] getChord() {
+        return chord;
     }
 
-    public Note getNote() {
-        return note;
+    public void setChord(int[] chord) {
+        this.chord = chord;
     }
 
-    public void setNote(Note note) {
-        this.note = note;
+    public int[] getFrom(Note note){
+        return null;
     }
 }
