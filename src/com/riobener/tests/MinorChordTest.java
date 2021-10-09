@@ -1,6 +1,6 @@
 package com.riobener.tests;
 
-import com.riobener.MajorChord;
+import com.riobener.MinorChord;
 import com.riobener.Note;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,8 +22,8 @@ class MinorChordTest {
 
     @Test
     void getChordFromNote() {
-        Assertions.assertEquals(chordC, new MajorChord().getFrom(keyC));
-        Assertions.assertEquals(chordF, new MajorChord().getFrom(keyF));
+        Assertions.assertEquals(chordC, new MinorChord().getFrom(keyC));
+        Assertions.assertEquals(chordF, new MinorChord().getFrom(keyF));
     }
 
 }
