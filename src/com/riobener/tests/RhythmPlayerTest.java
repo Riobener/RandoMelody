@@ -1,27 +1,29 @@
 package com.riobener.tests;
 
 import com.riobener.RhythmPlayer;
-import com.riobener.exceptions.NoteNameFormatException;
+import com.riobener.exceptions.UnableToCloseRhythmPlayerException;
 import org.junit.jupiter.api.Test;
 
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import javax.sound.midi.MidiUnavailableException;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RhythmPlayerTest {
 
     @Test
-    void initPlayer() {
+    void initPlayer() throws MidiUnavailableException {
         RhythmPlayer player = new RhythmPlayer();
-        assertTrue(player.init());
+        assertDoesNotThrow(player::init, String.valueOf(MidiUnavailableException.class));
     }
     @Test
-    void closePlayer_withFailure() {
+    void closePlayer_withFailure() throws MidiUnavailableException {
+        String notOpenMessage = "Impossible to close player when he is not opened yet";
         RhythmPlayer player = new RhythmPlayer();
-        Exception exception = assertThrows(NoteNameFormatException.class, player::close);
-        String expectedMessage = "Impossible to close player when he is not opened yet";
-        String actualMessage = exception.getMessage();
-        assertTrue(actualMessage.contains(expectedMessage));
+        assertThrows(NullPointerException.class, player::close);
+        player.init();
+        Exception synthOpenException = assertThrows(UnableToCloseRhythmPlayerException.class, player::close);
+        assertTrue(synthOpenException.getMessage().contains(notOpenMessage));
     }
 
 }
