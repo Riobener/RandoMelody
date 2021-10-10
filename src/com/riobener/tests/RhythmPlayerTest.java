@@ -14,14 +14,14 @@ public class RhythmPlayerTest {
     @Test
     void initPlayer() throws MidiUnavailableException {
         RhythmPlayer player = new RhythmPlayer();
-        assertDoesNotThrow(player::init, String.valueOf(MidiUnavailableException.class));
+        assertDoesNotThrow(() -> player.init(0));
     }
     @Test
     void closePlayer_withFailure() throws MidiUnavailableException {
         String notOpenMessage = "Impossible to close player when he is not opened yet";
         RhythmPlayer player = new RhythmPlayer();
         assertThrows(NullPointerException.class, player::close);
-        player.init();
+        player.init(0);
         Exception synthOpenException = assertThrows(UnableToCloseRhythmPlayerException.class, player::close);
         assertTrue(synthOpenException.getMessage().contains(notOpenMessage));
     }
