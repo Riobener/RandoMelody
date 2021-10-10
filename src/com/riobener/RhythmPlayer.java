@@ -1,17 +1,18 @@
 package com.riobener;
 
 import com.riobener.exceptions.UnableToCloseRhythmPlayerException;
-import org.junit.jupiter.api.function.Executable;
 
 import javax.sound.midi.MidiChannel;
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Synthesizer;
+import java.util.List;
 
-public class RhythmPlayer {
+public class RhythmPlayer implements Player{
     private MidiChannel[] channels = null;
     private Synthesizer synth = null;
     private int instrumentNumber = 0;
+
     public RhythmPlayer() {
 
     }
@@ -29,7 +30,7 @@ public class RhythmPlayer {
         synth = MidiSystem.getSynthesizer();
         synth.open();
         channels = synth.getChannels();
-        channels[0].programChange(this.instrumentNumber);
+        channels[1].programChange(this.instrumentNumber);
     }
 
     public void close() throws UnableToCloseRhythmPlayerException {
@@ -42,4 +43,16 @@ public class RhythmPlayer {
         }
     }
 
+    public MidiChannel[] getChannels() {
+        return channels;
+    }
+
+    public void setChannels(MidiChannel[] channels) {
+        this.channels = channels;
+    }
+
+    @Override
+    public void playSound(int channel, int duration, int volume, List<Integer> notes) {
+
+    }
 }
