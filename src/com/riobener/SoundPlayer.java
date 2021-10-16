@@ -10,12 +10,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class RhythmPlayer implements Player{
+public class SoundPlayer {
     private MidiChannel[] channels = null;
     private Synthesizer synth = null;
     private int instrumentNumber = 0;
+    private int channel;
 
-    public RhythmPlayer() {
+    public SoundPlayer() {
 
     }
 
@@ -28,11 +29,12 @@ public class RhythmPlayer implements Player{
     }
 
     public void init(int instrumentNumber) throws MidiUnavailableException {
+        this.channel = channel;
         this.instrumentNumber = instrumentNumber;
         synth = MidiSystem.getSynthesizer();
         synth.open();
         channels = synth.getChannels();
-        channels[1].programChange(this.instrumentNumber);
+        channels[0].programChange(instrumentNumber);
     }
 
     public void close() throws UnableToCloseRhythmPlayerException {
@@ -53,18 +55,28 @@ public class RhythmPlayer implements Player{
         this.channels = channels;
     }
 
-    @Override
-    public void playSound(int channel, int duration, int volume, List<Integer> notes) {
+    public void playChord(double duration, int volume, List<Integer> notes) {
         for (int note : notes) {
             channels[channel].noteOn(note, volume);
         }
         try {
-            Thread.sleep(duration);
+            Thread.sleep((long) duration);
         } catch (InterruptedException ex) {
-            Logger.getLogger(RhythmPlayer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SoundPlayer.class.getName()).log(Level.SEVERE, null, ex);
         }
         for (int note : notes) {
             channels[channel].noteOff(note);
         }
+    }
+
+    public void playNote(double duration, int volume, Note note) {
+        channels[channel].noteOn(note.getMidiNote(), volume);
+        try {
+            Thread.sleep((long) duration);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(SoundPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        channels[channel].noteOff(note.getMidiNote());
+
     }
 }

@@ -1,19 +1,22 @@
 package com.riobener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Chord {
 
-    private final int[] chord = new int[3];
+    private final List<Integer> chord= new ArrayList<>();
 
-    public int[] getMajorChord(Note note) {
-        chord[0] = note.getMidiNote();
-        chord[1] = note.getMidiNote() + 4;
-        chord[2] = note.getMidiNote() + 7;
+    public List<Integer> getMajorChord(Note note) {
+        chord.add(note.getMidiNote());
+        chord.add(note.getMidiNote() + 4);
+        chord.add(note.getMidiNote()+ 7);
         return chord;
     }
-    public int[] getMinorChord(Note note) {
-        chord[0] = note.getMidiNote();
-        chord[1] = note.getMidiNote() + 3;
-        chord[2] = note.getMidiNote() + 7;
+    public List<Integer> getMinorChord(Note note) {
+        chord.add(note.getMidiNote());
+        chord.add(note.getMidiNote() + 3);
+        chord.add(note.getMidiNote()+ 7);
         return chord;
     }
 }

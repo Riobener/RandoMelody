@@ -6,30 +6,31 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class ChordTest {
-    int[] chordCMaj;
-    int[] chordFMaj;
-    Note keyF;
     Note keyC;
-    int[] chordCMin;
-    int[] chordFMin;
+    List<Integer> chordCMaj;
+    List<Integer> chordCMin;
 
     @BeforeEach
     void setUp() {
-        keyC = new Note(5, "C", 1000);
-        keyF = new Note(3, "F", 1000);
-        chordCMaj = new int[]{60, 64, 67};
-        chordFMaj = new int[]{41, 45, 48};
-        chordCMin = new int[]{60, 63, 67};
-        chordFMin = new int[]{41, 44, 48};
+        keyC = new Note(5, "C");
+        chordCMaj = new ArrayList<>();
+        chordCMaj.add(60);
+        chordCMaj.add(64);
+        chordCMaj.add(67);
+        chordCMin = new ArrayList<>();
+        chordCMin.add(60);
+        chordCMin.add(63);
+        chordCMin.add(67);
     }
 
     @Test
     void getChordFromNote() {
-        Assertions.assertArrayEquals(chordCMaj, new Chord().getMajorChord(keyC));
-        Assertions.assertArrayEquals(chordFMaj, new Chord().getMajorChord(keyF));
-        Assertions.assertArrayEquals(chordCMin, new Chord().getMinorChord(keyC));
-        Assertions.assertArrayEquals(chordFMin, new Chord().getMinorChord(keyF));
+        Assertions.assertEquals(chordCMaj, new Chord().getMajorChord(keyC));
+        Assertions.assertEquals(chordCMin, new Chord().getMinorChord(keyC));
     }
 
 }

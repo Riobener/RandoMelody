@@ -7,10 +7,9 @@ public class Note {
     private String noteName;
     private int duration;
     String[] notes = new String[] {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" };
-    public Note(int octave, String noteName, int duration) {
+    public Note(int octave, String noteName) {
         this.octave = octave;
         this.noteName = noteName;
-        this.duration = duration;
     }
 
     public int getMidiNote(){
