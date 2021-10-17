@@ -6,18 +6,23 @@ public class RhythmTrack extends Thread {
 
     @Override
     public void run() {
-        SoundPlayer rhythm = new SoundPlayer();
+        SoundPlayer melody = new SoundPlayer();
         SongSpecification specification = new SongSpecification();
         try {
-            rhythm.init(0);
-            while(true){
-                rhythm.playChord(specification.measureDuration, 50, new Chord().getMajorChord(new Note(4, "C")));
-                rhythm.playChord(specification.measureDuration, 50, new Chord().getMajorChord(new Note(3, "E")));
-                rhythm.playChord(specification.measureDuration, 50, new Chord().getMajorChord(new Note(5, "C")));
-                rhythm.playChord(specification.measureDuration, 50, new Chord().getMajorChord(new Note(4 , "E")));
-            }
+            melody.init(0);
         } catch (MidiUnavailableException e) {
             e.printStackTrace();
+        }
+        Note[] notes = new Note[]{
+                new Note(4,"C"),
+                new Note(4,"D#"),
+                new Note(4,"F"),
+                new Note(4,"G"),
+                new Note(4,"A#")
+        };
+        SoundRandomizer soundRandomizer = new SoundRandomizer(melody,specification,notes);
+        while(true){
+            soundRandomizer.nextRandomChord(true);
         }
     }
 }

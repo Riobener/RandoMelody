@@ -1,9 +1,21 @@
 package com.riobener;
 
 public class SongSpecification {
-    int bpm = 170;
-    double beatDuration = 60000 / bpm;
-    double measureDuration = beatDuration * 4;
+    private int bpm = 140;
+    private double beatDuration = 60000 / bpm;
+    private double measureDuration = beatDuration * 4;
+
+    public void setBeatDuration(double beatDuration) {
+        this.beatDuration = beatDuration;
+    }
+
+    public double getMeasureDuration() {
+        return measureDuration;
+    }
+
+    public void setMeasureDuration(double measureDuration) {
+        this.measureDuration = measureDuration;
+    }
 
     public int getBpm() {
         return bpm;

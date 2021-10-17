@@ -2,7 +2,7 @@ package com.riobener;
 
 import javax.sound.midi.MidiUnavailableException;
 
-public class MelodyTrack extends Thread {
+public class  MelodyTrack extends Thread {
 
 
     @Override
@@ -10,19 +10,20 @@ public class MelodyTrack extends Thread {
         SoundPlayer melody = new SoundPlayer();
         SongSpecification specification = new SongSpecification();
         try {
-            melody.init(3);
+            melody.init(1);
         } catch (MidiUnavailableException e) {
             e.printStackTrace();
         }
+        Note[] notes = new Note[]{
+                new Note(4,"C"),
+                new Note(4,"D#"),
+                new Note(4,"F"),
+                new Note(4,"G"),
+                new Note(4,"A#")
+        };
+        SoundRandomizer soundRandomizer = new SoundRandomizer(melody,specification,notes);
         while(true){
-            melody.playNote(specification.beatDuration, 50,new Note(4,"E"));
-            melody.playNote(specification.beatDuration, 50,new Note(4,"C"));
-            melody.playNote(specification.beatDuration, 50,new Note(4,"E"));
-            melody.playNote(specification.beatDuration, 50,new Note(4,"C"));
-            melody.playNote(specification.beatDuration, 50,new Note(5,"E"));
-            melody.playNote(specification.beatDuration, 50,new Note(5,"C"));
-            melody.playNote(specification.beatDuration, 50,new Note(5,"E"));
-            melody.playNote(specification.beatDuration, 50,new Note(5,"C"));
+            soundRandomizer.nextRandomNote();
         }
 
     }
