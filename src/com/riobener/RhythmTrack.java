@@ -2,8 +2,14 @@ package com.riobener;
 
 import javax.sound.midi.MidiUnavailableException;
 
-public class RhythmTrack extends Thread {
+public class RhythmTrack implements Runnable {
+    private RandomizerParams randomizerParams;
+    private SongSpecification songSpecification;
 
+    public RhythmTrack(SongSpecification songSpecification, RandomizerParams randomizerParams) {
+        this.songSpecification = songSpecification;
+        this.randomizerParams = randomizerParams;
+    }
     @Override
     public void run() {
         SoundPlayer melody = new SoundPlayer();
@@ -13,14 +19,8 @@ public class RhythmTrack extends Thread {
         } catch (MidiUnavailableException e) {
             e.printStackTrace();
         }
-        Note[] notes = new Note[]{
-                new Note(4,"C"),
-                new Note(4,"D#"),
-                new Note(4,"F"),
-                new Note(4,"G"),
-                new Note(4,"A#")
-        };
-        SoundRandomizer soundRandomizer = new SoundRandomizer(melody,specification,notes);
+
+        SoundRandomizer soundRandomizer = new SoundRandomizer(melody,songSpecification, randomizerParams);
         while(true){
             soundRandomizer.nextRandomChord(true);
         }
