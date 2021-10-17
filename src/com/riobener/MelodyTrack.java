@@ -18,7 +18,6 @@ public class MelodyTrack implements Runnable {
         } catch (MidiUnavailableException e) {
             e.printStackTrace();
         }
-
         SoundRandomizer soundRandomizer = new SoundRandomizer(melody,songSpecification,randomizerParams);
         while(true){
             soundRandomizer.nextRandomNote();

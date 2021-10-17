@@ -22,7 +22,7 @@ public class RhythmTrack implements Runnable {
 
         SoundRandomizer soundRandomizer = new SoundRandomizer(melody,songSpecification, randomizerParams);
         while(true){
-            soundRandomizer.nextRandomChord(true);
+                soundRandomizer.nextRandomChord();
         }
     }
 }
