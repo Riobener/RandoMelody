@@ -13,6 +13,14 @@ public class UserInputValidation {
             return 0;
         }
     }
+    public int validateInstrument(String count) {
+        int countInt = Integer.parseInt(count);
+        if ((countInt > -1) && (countInt < 100)) {
+            return countInt;
+        } else {
+            return -1;
+        }
+    }
     public String[] validateNoteList(String str){
         String[] notes = new String[] {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" };
         String s1 = str.replaceAll(" ","");

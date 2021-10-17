@@ -15,7 +15,7 @@ public class RhythmTrack implements Runnable {
         SoundPlayer melody = new SoundPlayer();
         SongSpecification specification = new SongSpecification();
         try {
-            melody.init(0);
+            melody.init(randomizerParams.getInstrument());
         } catch (MidiUnavailableException e) {
             e.printStackTrace();
         }

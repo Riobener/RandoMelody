@@ -38,6 +38,12 @@ public class Main {
             noteArray[i] = new Note(3, validate.validateNoteList(notes)[i]);
         }
 
+        System.out.println("MelodyTrack: choose instrument (0,100):");
+        String melodyInstrument = scan.nextLine();
+        while (validate.validateInstrument(melodyInstrument)==-1) {
+            System.out.println("That is not valid input. Please enter again");
+            melodyInstrument = scan.nextLine();
+        }
         System.out.println("MelodyTrack: choose the octave interval (3, 7):");
         String melodyOctave = scan.nextLine();//OCTAVE RANGE
         while (validate.validateRandomOctaveRange(melodyOctave).length == 0) {
@@ -57,7 +63,12 @@ public class Main {
             System.out.println("That is not valid input. Please enter again");
             rhythmMode = scan.nextLine();
         }
-
+        System.out.println("RhythmTrack: choose instrument (0,100):");
+        String rhythmInstrument = scan.nextLine();
+        while (validate.validateInstrument(rhythmInstrument)==-1) {
+            System.out.println("That is not valid input. Please enter again");
+            rhythmInstrument = scan.nextLine();
+        }
         if (validate.validateMoodAndMode(rhythmMode)) {
             System.out.println("RhythmTrack: choose the octave interval (3, 7):");
             String rhythmOctave = scan.nextLine();//OCTAVE RANGE
@@ -74,11 +85,13 @@ public class Main {
             rhythmRandomizer = new RandomizerParams(noteArray,
                     validate.validateRandomOctaveRange(rhythmOctave),
                     validate.validateRandomBeatRange(rhythmBeat),
-                    validate.validateMoodAndMode(mood));
+                    validate.validateMoodAndMode(mood),
+                    validate.validateInstrument(rhythmInstrument));
             melodyRandomizer = new RandomizerParams(noteArray,
                     validate.validateRandomOctaveRange(melodyOctave),
                     validate.validateRandomBeatRange(melodyBeat),
-                    validate.validateMoodAndMode(mood));
+                    validate.validateMoodAndMode(mood),
+                    validate.validateInstrument(melodyInstrument));
         } else {
             System.out.println("RhythmTrack: choose the octave interval (3, 7):");
             String rhythmOctave = scan.nextLine();//OCTAVE RANGE
@@ -89,11 +102,14 @@ public class Main {
             rhythmRandomizer = new RandomizerParams(noteArray,
                     validate.validateRandomOctaveRange(rhythmOctave),
                     validate.validateRandomBeatRange(""),
-                    validate.validateMoodAndMode(mood));
+                    validate.validateMoodAndMode(mood)
+                    ,
+                    validate.validateInstrument(rhythmInstrument));
             melodyRandomizer = new RandomizerParams(noteArray,
                     validate.validateRandomOctaveRange(melodyOctave),
                     validate.validateRandomBeatRange(melodyBeat),
-                    validate.validateMoodAndMode(mood));
+                    validate.validateMoodAndMode(mood),
+                    validate.validateInstrument(melodyInstrument));
         }
         Runnable melody = new MelodyTrack(specification, melodyRandomizer);
         Runnable rhythm = new RhythmTrack(specification, rhythmRandomizer);

@@ -5,12 +5,23 @@ public class RandomizerParams {
     private int[] octaveRange;
     private int[] beatRange;
     private Boolean mood; //true - major, false - minor
+    private int instrument;
 
-    public RandomizerParams(Note[] notes, int[] octaveRange, int[] beatRange, Boolean mood) {
+    public RandomizerParams(Note[] notes, int[] octaveRange, int[] beatRange, Boolean mood,
+                            int instrument) {
         this.notes = notes;
         this.octaveRange = octaveRange;
         this.beatRange = beatRange;
         this.mood = mood;
+        this.instrument = instrument;
+    }
+
+    public int getInstrument() {
+        return instrument;
+    }
+
+    public void setInstrument(int instrument) {
+        this.instrument = instrument;
     }
 
     public Boolean getMood() {

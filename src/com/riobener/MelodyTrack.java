@@ -14,7 +14,7 @@ public class MelodyTrack implements Runnable {
     public void run() {
         SoundPlayer melody = new SoundPlayer();
         try {
-            melody.init(1);
+            melody.init(randomizerParams.getInstrument());
         } catch (MidiUnavailableException e) {
             e.printStackTrace();
         }
