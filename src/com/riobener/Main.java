@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws MidiUnavailableException {
+    public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         SongSpecification specification = new SongSpecification();
         RandomizerParams melodyRandomizer;

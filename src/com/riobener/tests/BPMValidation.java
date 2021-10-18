@@ -13,7 +13,7 @@ public class BPMValidation {
 
     @Test
     public void setTempoCorrect() {
-        Assertions.assertEquals(new UserInputValidation().validateBPM(count), count);
+        Assertions.assertEquals(count, validation.validateBPM(count)+"");
     }
 
     @Test

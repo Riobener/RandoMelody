@@ -20,6 +20,14 @@ public class SoundPlayer {
 
     }
 
+    public Synthesizer getSynth() {
+        return synth;
+    }
+
+    public void setSynth(Synthesizer synth) {
+        this.synth = synth;
+    }
+
     public int getInstrumentNumber() {
         return instrumentNumber;
     }
@@ -29,7 +37,6 @@ public class SoundPlayer {
     }
 
     public void init(int instrumentNumber) throws MidiUnavailableException {
-        this.channel = channel;
         this.instrumentNumber = instrumentNumber;
         synth = MidiSystem.getSynthesizer();
         synth.open();
@@ -38,12 +45,12 @@ public class SoundPlayer {
     }
 
     public void close() throws UnableToCloseRhythmPlayerException {
-        if (synth.isOpen()) {
-            synth.close();
-        } else if (synth == null) {
+        if (synth == null) {
             throw new NullPointerException("Synth must be initialized");
-        } else {
+        } else if (!synth.isOpen()) {
             throw new UnableToCloseRhythmPlayerException("Impossible to close player when he is not opened yet");
+        }else{
+            synth.close();
         }
     }
 

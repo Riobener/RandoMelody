@@ -27,6 +27,7 @@ public class SoundPlayerTest {
         SoundPlayer player = new SoundPlayer();
         assertThrows(NullPointerException.class, player::close);
         player.init(0);
+        player.getSynth().close();
         Exception synthOpenException = assertThrows(UnableToCloseRhythmPlayerException.class, player::close);
         assertTrue(synthOpenException.getMessage().contains(notOpenMessage));
     }
